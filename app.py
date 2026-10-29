@@ -13,7 +13,7 @@ st.set_page_config(
 st.title("Fake News Detection")
 st.write("Enter a news article to get a machine-learning prediction.")
 
-# Text cleaning function from your project
+# Text cleaning function
 def clean_text(text):
     text = str(text).lower()
     text = re.sub(r"http\S+|www\S+", "", text)
@@ -21,8 +21,9 @@ def clean_text(text):
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
-# Load your saved model and TF-IDF vectorizer
-BASE_DIR = Path("/content")
+# Load model files from the same folder as app.py
+BASE_DIR = Path(__file__).resolve().parent
+
 model = joblib.load(BASE_DIR / "best_model_week3.pkl")
 tfidf = joblib.load(BASE_DIR / "tfidf_week3.pkl")
 
